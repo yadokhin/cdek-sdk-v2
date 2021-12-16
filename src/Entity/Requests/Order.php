@@ -169,6 +169,21 @@ class Order extends Source
 
         return $this;
     }
+    
+     /**
+     * Экспресс метод. Устанавливает адрес получателя.
+     *
+     * @param int $address адрес получателя
+     *
+     * @return self
+     */
+    public function setRecipientPostalCode(int $code)
+    {
+        $this->to_location = (is_null($this->to_location)) ? Location::withCode($code)
+            : $this->to_location->setPostalCode($code);
+
+        return $this;
+    }
 
     /**
      * Экспресс метод. Устанавливает код города отправителя.
